@@ -174,7 +174,7 @@ export default function Home() {
               exploreUrl="https://demo.growthmate.xyz/#/ads"
             >
               <iframe
-                src="https://demo.growthmate.xyz/#/ads"
+                src="https://demo.growthmate.xyz/#/pure-ads"
                 className="w-full h-full min-h-[300px] rounded-2xl border-0"
                 title="GrowthMate Ad Targeting Demo"
               />
