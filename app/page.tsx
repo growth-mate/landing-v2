@@ -1,10 +1,9 @@
 "use client"
 
-import type React from "react"
-import { Calendar, Github, Send, Twitter, ArrowRight, Mail, ExternalLink } from "lucide-react"
 import { LogoWall } from "@/components/ui/logo-wall"
-import Booker from "@/components/booker"
 import Cal, { getCalApi } from "@calcom/embed-react"
+import { ArrowRight, Calendar, ExternalLink, Github, Mail, Send, Twitter } from "lucide-react"
+import type React from "react"
 import { useEffect } from "react"
 
 const advertiserDeckUrl = "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
