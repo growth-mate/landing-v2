@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { Calendar, Github, Send, Twitter, ArrowRight, Mail, ExternalLink } from "lucide-react"
+import { LogoWall } from "@/components/ui/logo-wall"
 
 // Add Sofia Sans font
 const SofiaSansFont = () => (
@@ -67,25 +68,6 @@ const DemoCard = ({
 )
 
 export default function Home() {
-  const allLogos = [
-    "Near",
-    "Ethereum",
-    "Polygon",
-    "Arbitrum",
-    "Optimism",
-    "Base",
-    "Meta Pool",
-    "Plato",
-    "Matchain",
-    "Rhea",
-    "MTE",
-    "Meteor",
-    "NearBlocks",
-    "Pikespeak",
-    "Shitzu",
-    "Routescan",
-  ]
-
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
       <SofiaSansFont />
@@ -130,7 +112,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mt-12 rounded-3xl overflow-hidden">
+          <div className="my-[-60px] rounded-3xl overflow-hidden">
             <img
               src="/scene-1.gif"
               alt="GrowthMate Demo"
@@ -147,12 +129,18 @@ export default function Home() {
             <div className="text-center mb-8">
               <h2 className="text-xl font-semibold text-light/80">Trusted by Leading Web3 Projects</h2>
             </div>
-            <div className="relative">
-              <div className="flex animate-marquee">
-                {[...allLogos, ...allLogos].map((logo, index) => (
-                  <PartnerLogo key={`${logo}-${index}`} name={logo} />
-                ))}
-              </div>
+            <div className="relative h-40">
+              <LogoWall 
+                src="/partners.png" 
+                alt="GrowthMate Partners" 
+                className="h-full"
+                height={120}
+                speed={60}
+              />
+              {/* Left gradient overlay */}
+              <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-[#080908] to-transparent pointer-events-none z-10" />
+              {/* Right gradient overlay */}
+              <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-[#080908] to-transparent pointer-events-none z-10" />
             </div>
           </div>
         </section>
@@ -187,10 +175,10 @@ export default function Home() {
               height="h-[700px]"
             >
               <iframe
-                src="https://chat.growthmate.xyz/"
+                src="https://chat.growthmate.xyz/?noFocus"
                 className="w-full h-full rounded-2xl border-0"
                 title="GrowthMate Discovery Agent Demo"
-              />
+                />
             </DemoCard>
           </div>
         </section>
