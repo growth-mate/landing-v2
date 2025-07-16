@@ -72,5 +72,54 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        // Mobile font scaling
+        '.mobile-scale': {
+          '@media (max-width: 767px)': {
+            // Scale text sizes
+            '& .text-4xl, & .text-6xl': { fontSize: '2rem', lineHeight: '2.25rem' },
+            '& .text-3xl': { fontSize: '1.5rem', lineHeight: '2rem' },
+            '& .text-2xl': { fontSize: '1.25rem', lineHeight: '1.75rem' },
+            '& .text-xl': { fontSize: '1.125rem', lineHeight: '1.75rem' },
+            '& .text-lg': { fontSize: '1rem', lineHeight: '1.5rem' },
+            
+            // Scale padding and margins
+            '& .py-20': { paddingTop: '3rem', paddingBottom: '3rem' },
+            '& .py-12': { paddingTop: '2rem', paddingBottom: '2rem' },
+            '& .py-8': { paddingTop: '1.5rem', paddingBottom: '1.5rem' },
+            '& .py-6': { paddingTop: '1rem', paddingBottom: '1rem' },
+            '& .py-4': { paddingTop: '0.75rem', paddingBottom: '0.75rem' },
+            '& .py-3': { paddingTop: '0.5rem', paddingBottom: '0.5rem' },
+            
+            '& .px-8': { paddingLeft: '1.5rem', paddingRight: '1.5rem' },
+            '& .px-6': { paddingLeft: '1rem', paddingRight: '1rem' },
+            
+            '& .p-8': { padding: '1.5rem' },
+            '& .p-12': { padding: '2rem' },
+            
+            '& .mb-12': { marginBottom: '2rem' },
+            '& .mb-8': { marginBottom: '1.5rem' },
+            '& .mb-6': { marginBottom: '1rem' },
+            '& .mb-4': { marginBottom: '0.75rem' },
+            '& .mb-3': { marginBottom: '0.5rem' },
+            
+            '& .gap-8': { gap: '1.5rem' },
+            '& .gap-6': { gap: '1rem' },
+            '& .gap-4': { gap: '0.75rem' },
+            
+            // Scale rounded corners
+            '& .rounded-3xl': { borderRadius: '1rem' },
+            '& .rounded-2xl': { borderRadius: '0.75rem' },
+            
+            // Scale container padding
+            '& .container': { paddingLeft: '1rem', paddingRight: '1rem' },
+          }
+        }
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 }
