@@ -3,6 +3,14 @@
 import type React from "react"
 import { Calendar, Github, Send, Twitter, ArrowRight, Mail, ExternalLink } from "lucide-react"
 import { LogoWall } from "@/components/ui/logo-wall"
+import Booker from "@/components/booker"
+import Cal, { getCalApi } from "@calcom/embed-react"
+import { useEffect } from "react"
+
+const advertiserDeckUrl = "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
+const publisherDeckUrl = "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
+const discoveryDeckUrl = "https://docs.google.com/presentation/d/15vLp6EXiRfI58zAJfMNB-GeH8C3r7JixKRSXx_OPgK8/export?format=pdf"
+const brandKitUrl = "https://drive.google.com/drive/folders/12wWdK4s3LpUx8PY8QDqLGTh3J4g8Tps6?usp=sharing"
 
 // Add Sofia Sans font
 const SofiaSansFont = () => (
@@ -68,6 +76,13 @@ const DemoCard = ({
 )
 
 export default function Home() {
+    useEffect(() => {
+        (async function () {
+          const cal = await getCalApi({"namespace":"15min"});
+          cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#8cb88c"},"dark":{"cal-brand":"#c2f0c2"}},"hideEventTypeDetails":true,"layout":"month_view"});
+        })();
+      }, [])
+
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
       <SofiaSansFont />
@@ -126,10 +141,10 @@ export default function Home() {
 
         <section className="py-12 border-y border-light/10 overflow-hidden">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-8">
-              <h2 className="text-xl font-semibold text-light/80">Trusted by Leading Web3 Projects</h2>
+            <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold text-center">Our Partners</h2>
             </div>
-            <div className="relative h-40">
+            <div className="relative -my-6">
               <LogoWall 
                 src="/partners.png" 
                 alt="GrowthMate Partners" 
@@ -271,16 +286,10 @@ export default function Home() {
           <div className="bg-light/5 rounded-3xl p-12 text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Enhance Your Targeting?</h2>
             <p className="text-xl mb-8 text-light/80">Schedule a personalized demo with our team</p>
-            <div className="max-w-md mx-auto bg-dark/50 rounded-2xl p-6 mb-8">
-              <div className="text-primary mb-4">Cal.com Calendar Integration Placeholder</div>
-              <button className="bg-primary text-dark px-8 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2">
-                Book a Demo <Calendar className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
+            <Cal namespace="15min" calLink="growthmate-xyz/15min" style={{width:"100%",height:"100%",overflow:"scroll"}} config={{"layout":"month_view","theme":"dark"}} />
+          </div><div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
               <a
-                href="https://app.growthmate.xyz/advertise"
+                href={advertiserDeckUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary text-dark px-8 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
@@ -288,7 +297,7 @@ export default function Home() {
                 Advertise with GrowthMate <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="https://app.growthmate.xyz/publish"
+                href={publisherDeckUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-light/10 text-light px-8 py-3 rounded-full font-semibold text-lg hover:bg-light/20 transition-colors inline-flex items-center gap-2"
@@ -296,7 +305,6 @@ export default function Home() {
                 Publish with GrowthMate <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-          </div>
         </section>
       </main>
 
@@ -310,7 +318,7 @@ export default function Home() {
                 <h4 className="font-semibold mb-3">Resources</h4>
                 <div className="space-y-2 text-sm">
                   <a
-                    href="/advertiser-deck.pdf"
+                    href={advertiserDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-light/60 hover:text-primary transition-colors"
@@ -318,7 +326,7 @@ export default function Home() {
                     Advertiser Deck
                   </a>
                   <a
-                    href="/publisher-deck.pdf"
+                    href={publisherDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-light/60 hover:text-primary transition-colors"
@@ -326,7 +334,7 @@ export default function Home() {
                     Publisher Deck
                   </a>
                   <a
-                    href="/discovery-deck.pdf"
+                    href={discoveryDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-light/60 hover:text-primary transition-colors"
@@ -334,7 +342,7 @@ export default function Home() {
                     Discovery Deck
                   </a>
                   <a
-                    href="/brand-kit.zip"
+                    href={brandKitUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-light/60 hover:text-primary transition-colors"
@@ -347,11 +355,11 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold mb-3">Connect</h4>
                 <div className="flex gap-4">
-                  <a href="mailto:hello@growthmate.xyz" className="text-light/60 hover:text-primary transition-colors">
+                  <a href="mailto:contact@growthmate.xyz" className="text-light/60 hover:text-primary transition-colors">
                     <Mail className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://cal.com/growthmate-xyz/30min"
+                    href="https://cal.com/growthmate-xyz"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-light/60 hover:text-primary transition-colors"
@@ -359,7 +367,7 @@ export default function Home() {
                     <Calendar className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://t.me/growthmate_xyz"
+                    href="https://t.me/lennczar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-light/60 hover:text-primary transition-colors"
@@ -367,7 +375,7 @@ export default function Home() {
                     <Send className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://github.com/growthmate"
+                    href="https://github.com/growth-mate"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-light/60 hover:text-primary transition-colors"
@@ -375,7 +383,7 @@ export default function Home() {
                     <Github className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://twitter.com/growthmate_xyz"
+                    href="https://x.com/growthmate_xyz"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-light/60 hover:text-primary transition-colors"
@@ -386,7 +394,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-8 text-center text-light/60 text-sm">© 2023 GrowthMate. All rights reserved.</div>
+          <div className="mt-8 text-center text-light/60 text-sm">© 2025 GrowthMate. All rights reserved.</div>
         </div>
       </footer>
 
