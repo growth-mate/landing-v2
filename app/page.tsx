@@ -406,7 +406,26 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-6 md:mt-8 text-center text-light/60 text-xs md:text-sm">© 2025 GrowthMate. All rights reserved.</div>
+          <div className="mt-6 md:mt-8 text-center text-light/60 text-xs md:text-sm">
+            © 2025 GrowthMate. All rights reserved. | {" "}
+            <a
+              href="https://cdn.growthmate.xyz/tos.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors underline"
+            >
+              Terms Of Service
+            </a>
+            {" | "}
+            <a
+              href="https://cdn.growthmate.xyz/privacy-policy.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors underline"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </footer>
 
