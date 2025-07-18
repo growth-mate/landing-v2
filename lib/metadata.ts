@@ -79,9 +79,9 @@ export function createMetadata({
 
   return {
     title,
-    description,
+    description: finalDescription,
     keywords: allKeywords,
-    authors: [{ name: 'GrowthMate Team' }],
+    authors: [{ name: 'GrowthMate' }],
     creator: baseMetadata.siteName,
     publisher: baseMetadata.siteName,
     metadataBase: new URL(baseMetadata.siteUrl),
@@ -90,7 +90,7 @@ export function createMetadata({
     },
     openGraph: {
       title: baseMetadata.siteName,
-      description,
+      description: finalDescription,
       url,
       type,
       images: [
@@ -105,7 +105,7 @@ export function createMetadata({
     twitter: {
       card: 'summary',
       title: baseMetadata.siteName,
-      description,
+      description: finalDescription,
       site: baseMetadata.twitterHandle,
       creator: baseMetadata.twitterHandle,
       images: [finalImage],
