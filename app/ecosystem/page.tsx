@@ -1,13 +1,6 @@
 "use client"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import { createMetadata } from '@/lib/metadata'
-
-// export const metadata = createMetadata({
-//   title: 'GrowthMate Ecosystem - Web3 Partners & Integrations',
-//   description: 'Explore GrowthMate\'s Web3 ecosystem including supported blockchains, advertiser partners, and publisher integrations across Near, Ethereum, Polygon, and more.',
-//   path: '/ecosystem',
-// })
 
 const Logo = () => (
   <svg width="73" height="65" viewBox="0 0 73 65" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
