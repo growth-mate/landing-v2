@@ -11,6 +11,8 @@ const publisherDeckUrl = "https://docs.google.com/presentation/d/1nOwJK2pptSiqEf
 const discoveryDeckUrl = "https://docs.google.com/presentation/d/15vLp6EXiRfI58zAJfMNB-GeH8C3r7JixKRSXx_OPgK8/export?format=pdf"
 const brandKitUrl = "https://drive.google.com/drive/folders/12wWdK4s3LpUx8PY8QDqLGTh3J4g8Tps6?usp=sharing"
 
+// :D
+
 // Add Sofia Sans font
 const SofiaSansFont = () => (
   <style jsx global>{`
