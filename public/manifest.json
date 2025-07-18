@@ -1,0 +1,21 @@
+{
+  "name": "GrowthMate - Web3 Ads & Discovery",
+  "short_name": "GrowthMate",
+  "description": "Optimize engagement with precision targeting based on on-chain activity",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080908",
+  "theme_color": "#c2f0c2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "finance", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+} 

@@ -5,6 +5,12 @@ import Cal, { getCalApi } from "@calcom/embed-react"
 import { ArrowRight, Calendar, ExternalLink, Github, Mail, Send, Twitter } from "lucide-react"
 import type React from "react"
 import { useEffect } from "react"
+import { createMetadata } from '@/lib/metadata'
+
+export const metadata = createMetadata({
+  title: 'GrowthMate - Web3 Ads & Discovery',
+  description: 'Optimize engagement with precision targeting based on on-chain activity. Advanced AI-powered Web3 advertising platform connecting advertisers and publishers in the decentralized ecosystem.',
+})
 
 const advertiserDeckUrl = "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
 const publisherDeckUrl = "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
