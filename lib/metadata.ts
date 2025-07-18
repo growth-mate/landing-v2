@@ -7,6 +7,7 @@ export const baseMetadata = {
   twitterHandle: '@growthmate_xyz',
   defaultImage: 'https://cdn.growthmate.xyz/openg-img/logo-square-1024x1024.png',
   themeColor: '#c2f0c2',
+  description: 'Optimize engagement with precision targeting based on on-chain activity',
   keywords: [
     'Web3 advertising',
     'blockchain targeting',
@@ -65,7 +66,7 @@ export function createMetadata({
   type = 'website'
 }: {
   title: string
-  description: string
+  description?: string
   path?: string
   keywords?: string[]
   image?: string
@@ -74,6 +75,7 @@ export function createMetadata({
   const url = `${baseMetadata.siteUrl}${path}`
   const finalImage = image || baseMetadata.defaultImage
   const allKeywords = [...baseMetadata.keywords, ...keywords]
+  const finalDescription = description || baseMetadata.description
 
   return {
     title,

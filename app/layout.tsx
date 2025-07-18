@@ -4,7 +4,6 @@ import { createMetadata, baseMetadata, organizationSchema } from '@/lib/metadata
 
 export const metadata: Metadata = createMetadata({
   title: 'GrowthMate - Web3 Ads & Discovery',
-  description: 'Optimize engagement with precision targeting based on on-chain activity. AI-powered Web3 advertising platform for advertisers and publishers.',
 })
 
 export default function RootLayout({
