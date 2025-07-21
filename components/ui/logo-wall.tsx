@@ -251,4 +251,4 @@ export function LogoWall({
   )
 }
 
-export default LogoWall 
+export default LogoWall

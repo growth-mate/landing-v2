@@ -6,9 +6,12 @@ import { ArrowRight, Calendar, ExternalLink, Github, Mail, Send, Twitter } from 
 import type React from "react"
 import { useEffect } from "react"
 
-const advertiserDeckUrl = "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
-const publisherDeckUrl = "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
-const discoveryDeckUrl = "https://docs.google.com/presentation/d/15vLp6EXiRfI58zAJfMNB-GeH8C3r7JixKRSXx_OPgK8/export?format=pdf"
+const advertiserDeckUrl =
+  "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
+const publisherDeckUrl =
+  "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
+const discoveryDeckUrl =
+  "https://docs.google.com/presentation/d/15vLp6EXiRfI58zAJfMNB-GeH8C3r7JixKRSXx_OPgK8/export?format=pdf"
 const brandKitUrl = "https://drive.google.com/drive/folders/12wWdK4s3LpUx8PY8QDqLGTh3J4g8Tps6?usp=sharing"
 
 // :D
@@ -69,12 +72,17 @@ const DemoCard = ({
 )
 
 export default function Home() {
-    useEffect(() => {
-        (async function () {
-          const cal = await getCalApi({"namespace":"15min"});
-          cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#8cb88c"},"dark":{"cal-brand":"#c2f0c2"}},"hideEventTypeDetails":true,"layout":"month_view"});
-        })();
-      }, [])
+  useEffect(() => {
+    ;(async () => {
+      const cal = await getCalApi({ namespace: "15min" })
+      cal("ui", {
+        theme: "dark",
+        cssVarsPerTheme: { light: { "cal-brand": "#8cb88c" }, dark: { "cal-brand": "#c2f0c2" } },
+        hideEventTypeDetails: true,
+        layout: "month_view",
+      })
+    })()
+  }, [])
 
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
@@ -89,6 +97,9 @@ export default function Home() {
               </a>
               <a href="#solutions" className="hover:text-primary transition-colors">
                 Solutions
+              </a>
+              <a href="/blog" className="hover:text-primary transition-colors">
+                Blog
               </a>
             </nav>
             <a
@@ -135,16 +146,10 @@ export default function Home() {
         <section className="py-8 md:py-12 border-y border-light/10 overflow-hidden">
           <div className="container mx-auto px-0 md:px-6">
             <div className="text-center mb-4 md:mb-6 px-4 md:px-0">
-                <h2 className="text-2xl md:text-3xl font-bold text-center">Our Partners</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-center">Our Partners</h2>
             </div>
             <div className="relative -my-6">
-              <LogoWall 
-                src="/partners.png" 
-                alt="GrowthMate Partners" 
-                className="h-full"
-                height={80}
-                speed={60}
-              />
+              <LogoWall src="/partners.png" alt="GrowthMate Partners" className="h-full" height={80} speed={60} />
               {/* Left gradient overlay */}
               <div className="absolute top-0 left-0 w-8 md:w-16 h-full bg-gradient-to-r from-[#080908] to-transparent pointer-events-none z-10" />
               {/* Right gradient overlay */}
@@ -161,12 +166,19 @@ export default function Home() {
         </section>
         */}
 
-        <section id="demo" className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">Experience GrowthMate</h2>
+        <section
+          id="demo"
+          className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">
+            Experience GrowthMate
+          </h2>
           <div className="space-y-6 md:space-y-8">
             <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 relative mx-0 md:mx-auto">
               <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Smart Ad Targeting</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">See how we optimize ad delivery in real-time</p>
+              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
+                See how we optimize ad delivery in real-time
+              </p>
               <div className="bg-dark/50 rounded-2xl min-h-[200px] md:min-h-[300px] flex items-center justify-center relative">
                 <iframe
                   src="https://demo.growthmate.xyz/#/pure-ads"
@@ -187,13 +199,15 @@ export default function Home() {
 
             <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 relative mx-0 md:mx-auto">
               <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Personalized Discovery Agent</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">Watch our AI curate personalized content feeds</p>
+              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
+                Watch our AI curate personalized content feeds
+              </p>
               <div className="bg-dark/50 rounded-2xl max-h-screen h-[700px] flex items-center justify-center relative">
                 <iframe
                   src="https://chat.growthmate.xyz/?noFocus"
                   className="w-full h-full rounded-2xl border-0"
                   title="GrowthMate Discovery Agent Demo"
-                  />
+                />
                 <a
                   href="https://chat.growthmate.xyz/"
                   target="_blank"
@@ -208,8 +222,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="solutions" className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">Solutions for Your Business</h2>
+        <section
+          id="solutions"
+          className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">
+            Solutions for Your Business
+          </h2>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 text-left md:text-center">
               <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4">For Advertisers</h3>
@@ -292,29 +311,38 @@ export default function Home() {
         </section>
         */}
 
-        <section id="contact" className="container mx-auto px-4 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10">
+        <section
+          id="contact"
+          className="container mx-auto px-4 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
+        >
           <div className="bg-transparent md:bg-light/5 rounded-2xl md:rounded-3xl md:p-12 text-left md:text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Ready to Enhance Your Targeting?</h2>
             <p className="text-lg md:text-xl mb-6 md:mb-8 text-light/80">Schedule a personalized demo with our team</p>
-            <Cal namespace="15min" calLink="growthmate-xyz/15min" className="w-full h-full max-h-[550px] md:max-h-none overflow-scroll rounded-2xl" config={{"layout":"month_view","theme":"dark"}} />
-          </div><div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center mt-8 md:mt-12">
-              <a
-                href={advertiserDeckUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-dark px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
-              >
-                Advertise with GrowthMate <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href={publisherDeckUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-light/10 text-light px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-light/20 transition-colors inline-flex items-center gap-2"
-              >
-                Publish with GrowthMate <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+            <Cal
+              namespace="15min"
+              calLink="growthmate-xyz/15min"
+              className="w-full h-full max-h-[550px] md:max-h-none overflow-scroll rounded-2xl"
+              config={{ layout: "month_view", theme: "dark" }}
+            />
+          </div>
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center mt-8 md:mt-12">
+            <a
+              href={advertiserDeckUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-dark px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
+            >
+              Advertise with GrowthMate <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href={publisherDeckUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-light/10 text-light px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-light/20 transition-colors inline-flex items-center gap-2"
+            >
+              Publish with GrowthMate <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </section>
       </main>
 
@@ -329,6 +357,9 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Resources</h4>
                 <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                  <a href="/blog" className="block text-light/60 hover:text-primary transition-colors">
+                    Blog
+                  </a>
                   <a
                     href={advertiserDeckUrl}
                     target="_blank"
@@ -367,7 +398,10 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Connect</h4>
                 <div className="flex gap-3 md:gap-4">
-                  <a href="mailto:contact@growthmate.xyz" className="text-light/60 hover:text-primary transition-colors">
+                  <a
+                    href="mailto:contact@growthmate.xyz"
+                    className="text-light/60 hover:text-primary transition-colors"
+                  >
                     <Mail className="w-4 md:w-5 h-4 md:h-5" />
                   </a>
                   <a
@@ -407,7 +441,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-6 md:mt-8 text-center text-light/60 text-xs md:text-sm">
-            © 2025 GrowthMate. All rights reserved. | {" "}
+            © 2025 GrowthMate. All rights reserved. |{" "}
             <a
               href="https://cdn.growthmate.xyz/tos.html"
               target="_blank"

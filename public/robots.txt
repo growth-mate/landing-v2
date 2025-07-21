@@ -19,4 +19,4 @@ Allow: /*.gif
 Allow: /*.svg
 
 # Crawl delay for being respectful to the server
-Crawl-delay: 1 
+Crawl-delay: 1

@@ -11,4 +11,4 @@ export default function EcosystemLayout({
   children: React.ReactNode
 }) {
   return children
-} 
+}
