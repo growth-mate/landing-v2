@@ -1,6 +1,9 @@
 "use client"
-import { ArrowLeft } from "lucide-react"
+
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 
 const Logo = () => (
   <svg width="73" height="65" viewBox="0 0 73 65" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
@@ -11,60 +14,46 @@ const Logo = () => (
   </svg>
 )
 
-const EcosystemLogo = ({ name, url, className = "" }: { name: string; url: string; className?: string }) => (
+const EcosystemLogo = ({ name, url }: { name: string; url: string }) => (
   <a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className={`bg-light/5 rounded-lg px-6 py-4 flex items-center justify-center h-16 hover:bg-light/10 transition-colors cursor-pointer ${className}`}
+    className="bg-light/5 rounded-2xl p-4 hover:bg-light/10 transition-colors group"
   >
-    <span className="font-medium text-light/70 hover:text-light transition-colors">{name}</span>
+    <div className="text-center">
+      <div className="w-12 h-12 mx-auto mb-2 bg-light/10 rounded-lg flex items-center justify-center">
+        <span className="text-xs font-mono">{name.slice(0, 3).toUpperCase()}</span>
+      </div>
+      <p className="text-sm font-medium">{name}</p>
+    </div>
   </a>
 )
 
 export default function Ecosystem() {
   const supportedChains = [
-    { name: "Near", url: "https://near.org" },
+    { name: "Base", url: "https://base.org" },
     { name: "Ethereum", url: "https://ethereum.org" },
     { name: "Polygon", url: "https://polygon.technology" },
     { name: "Arbitrum", url: "https://arbitrum.io" },
     { name: "Optimism", url: "https://optimism.io" },
-    { name: "Base", url: "https://base.org" },
+    { name: "Binance", url: "https://bnbchain.world" },
   ]
 
-  const advertisers = [
-    { name: "Meta Pool", url: "https://metapool.app" },
-    { name: "Plato", url: "https://plato.network" },
-    { name: "Matchain", url: "https://matchain.io" },
-    { name: "Rhea", url: "https://rhea.finance" },
-    { name: "MTE", url: "https://mte.network" },
-    { name: "Meteor", url: "https://meteor.computer" },
-  ]
-
-  const publishers = [
-    { name: "NearBlocks", url: "https://nearblocks.io" },
-    { name: "Pikespeak", url: "https://pikespeak.ai" },
-    { name: "Shitzu", url: "https://shitzu.ai" },
+  const partners = [
+    { name: "Partner 1", url: "#" },
+    { name: "Partner 2", url: "#" },
+    { name: "Partner 3", url: "#" },
+    { name: "Partner 4", url: "#" },
+    { name: "Partner 5", url: "#" },
+    { name: "Partner 6", url: "#" },
   ]
 
   const comingSoon = [{ name: "Routescan", url: "https://routescan.io" }]
 
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
-      <nav className="fixed w-full bg-dark/80 backdrop-blur-sm z-50">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <ArrowLeft className="w-5 h-5" />
-              <span>Back</span>
-            </Link>
-            <div className="flex items-center gap-2">
-              <Logo />
-              <span className="font-bold text-xl">GrowthMate</span>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       <main className="pt-24 container mx-auto px-6 py-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-12">Our Ecosystem</h1>
@@ -83,69 +72,47 @@ export default function Ecosystem() {
         </section>
 
         {/* Advertisers and Publishers */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Advertisers */}
-          <section>
-            <div className="bg-light/5 rounded-3xl p-8 h-full">
-              <h2 className="text-2xl font-semibold mb-6 text-light/90">Advertiser</h2>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {advertisers.map((advertiser) => (
-                  <EcosystemLogo key={advertiser.name} name={advertiser.name} url={advertiser.url} />
-                ))}
-              </div>
-              <p className="text-light/60 text-center">& many more</p>
+        <section className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-light/5 rounded-3xl p-8">
+            <h2 className="text-2xl font-semibold mb-6 text-light/90">Advertisers & Publishers</h2>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              {partners.map((partner) => (
+                <EcosystemLogo key={partner.name} name={partner.name} url={partner.url} />
+              ))}
             </div>
-          </section>
+            <p className="text-light/60 text-center">Growing ecosystem of Web3 partners</p>
+          </div>
 
-          {/* Publishers */}
-          <section>
-            <div className="bg-light/5 rounded-3xl p-8 h-full">
-              <h2 className="text-2xl font-semibold mb-6 text-light/90">Publisher</h2>
-              <div className="grid grid-cols-1 gap-4 mb-6">
-                {publishers.map((publisher) => (
-                  <EcosystemLogo key={publisher.name} name={publisher.name} url={publisher.url} />
-                ))}
-              </div>
-
-              {/* Coming Soon Section */}
-              <div className="mt-8">
-                <h3 className="text-lg font-medium mb-4 text-light/80">Coming soon</h3>
-                <div className="grid grid-cols-1 gap-4">
-                  {comingSoon.map((item) => (
-                    <EcosystemLogo key={item.name} name={item.name} url={item.url} className="opacity-60" />
-                  ))}
-                </div>
-              </div>
+          <div className="bg-light/5 rounded-3xl p-8">
+            <h2 className="text-2xl font-semibold mb-6 text-light/90">Coming Soon</h2>
+            <div className="grid grid-cols-1 gap-4 mb-6">
+              {comingSoon.map((partner) => (
+                <EcosystemLogo key={partner.name} name={partner.name} url={partner.url} />
+              ))}
             </div>
-          </section>
-        </div>
+            <p className="text-light/60 text-center">More integrations in development</p>
+          </div>
+        </section>
 
         {/* Call to Action */}
         <section className="text-center">
-          <div className="bg-light/5 rounded-3xl p-12">
-            <h2 className="text-3xl font-bold mb-6">Join Our Ecosystem</h2>
-            <p className="text-xl mb-8 text-light/80">Become part of the future of Web3 advertising and discovery</p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a
-                href="https://app.growthmate.xyz/advertiser"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-dark px-8 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
-              >
-                Become an Advertiser <ArrowLeft className="w-4 h-4 rotate-180" />
-              </a>
-              <a
-                href="https://app.growthmate.xyz/publisher"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-light/10 text-light px-8 py-3 rounded-full font-semibold text-lg hover:bg-light/20 transition-colors inline-flex items-center gap-2"
-              >
-                Become a Publisher <ArrowLeft className="w-4 h-4 rotate-180" />
-              </a>
-            </div>
+          <div className="bg-light/5 rounded-3xl p-8">
+            <h2 className="text-2xl font-bold mb-4">Want to Join Our Ecosystem?</h2>
+            <p className="text-light/80 mb-6">
+              Whether you're an advertiser looking to reach Web3 users or a publisher wanting to monetize your audience,
+              we'd love to work with you.
+            </p>
+            <a
+              href="mailto:partnerships@growthmate.xyz"
+              className="bg-primary text-dark px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-block"
+            >
+              Get in Touch
+            </a>
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   )
 }

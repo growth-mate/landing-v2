@@ -1,19 +1,17 @@
 "use client"
 
-import { getBlogPost } from "@/lib/blog"
+import { BlogPost } from "@/lib/blog"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import Link from "next/link"
+import { ArrowLeftIcon } from "lucide-react"
 
-export default function BlogPostClientPage({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug)
+interface BlogPostClientPageProps {
+  post: BlogPost
+}
 
-  if (!post) {
-    notFound()
-  }
-
+export default function BlogPostClientPage({ post }: BlogPostClientPageProps) {
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
       <Header />
@@ -22,8 +20,8 @@ export default function BlogPostClientPage({ params }: { params: { slug: string 
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
           <div className="max-w-4xl mx-auto">
             <nav className="mb-6 md:mb-8">
-              <Link href="/blog" className="text-primary hover:text-primary/80 transition-colors">
-                ← Back to Blog
+              <Link href="/blog" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+                <ArrowLeftIcon className="w-4 h-4" /> Back to Blog
               </Link>
             </nav>
 

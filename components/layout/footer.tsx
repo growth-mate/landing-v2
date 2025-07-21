@@ -21,9 +21,9 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Resources</h4>
               <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                <a href="/blog" className="block text-light/60 hover:text-primary transition-colors">
+                {/* <a href="/blog" className="block text-light/60 hover:text-primary transition-colors">
                   Blog
-                </a>
+                </a> */}
                 <a
                   href={advertiserDeckUrl}
                   target="_blank"

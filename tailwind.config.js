@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sofia)", "sans-serif"],
+      },
       colors: {
         dark: "#080908",
         light: "#eceeec",

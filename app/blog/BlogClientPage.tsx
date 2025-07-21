@@ -1,13 +1,16 @@
 "use client"
 
-import { getBlogPosts } from "@/lib/blog"
+import { BlogPost } from "@/lib/blog"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 
-export default function BlogClientPage() {
-  const posts = getBlogPosts()
+interface BlogClientPageProps {
+  posts: BlogPost[]
+}
 
+export default function BlogClientPage({ posts }: BlogClientPageProps) {
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
       <Header />
@@ -49,9 +52,9 @@ export default function BlogClientPage() {
 
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="text-primary hover:text-primary/80 transition-colors font-medium"
+                      className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-2"
                     >
-                      Read more →
+                      Read more <ArrowRightIcon className="w-4 h-4" />
                     </Link>
                   </article>
                 ))}
