@@ -175,7 +175,7 @@ export default function Home() {
               />
               <div className="space-y-3 md:space-y-4 text-center">
                 <a
-                  href="https://app.growthmate.xyz/advertiser"
+                  href="https://app.growthmate.xyz/advertise"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
@@ -184,7 +184,7 @@ export default function Home() {
                 </a>
                 <div>
                   <a
-                    href="/advertiser-deck.pdf"
+                    href={advertiserDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
@@ -208,7 +208,7 @@ export default function Home() {
               />
               <div className="space-y-3 md:space-y-4 text-center">
                 <a
-                  href="https://app.growthmate.xyz/publisher"
+                  href="https://app.growthmate.xyz/publish"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
@@ -216,8 +216,8 @@ export default function Home() {
                   Become a Publisher <ArrowRight className="w-4 h-4" />
                 </a>
                 <div>
-                  <a
-                    href="/publisher-deck.pdf"
+                  <a    
+                    href={publisherDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
