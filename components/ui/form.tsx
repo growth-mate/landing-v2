@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
-import { Slot } from "@radix-ui/react-slot"
+import { Slot, type SlotProps } from "@radix-ui/react-slot"
 import {
   Controller,
   ControllerProps,
@@ -119,7 +119,7 @@ const FormControl = React.forwardRef<
           : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
-      {...props}
+      {...(props as SlotProps)}
     />
   )
 })
