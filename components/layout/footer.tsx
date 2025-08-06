@@ -1,4 +1,5 @@
 import { Calendar, Github, Send, Twitter, Mail } from "lucide-react"
+import Link from "next/link"
 
 const advertiserDeckUrl =
   "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
@@ -21,9 +22,9 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Resources</h4>
               <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                <a href="/blog" className="block text-light/60 hover:text-primary transition-colors">
+                <Link href="/blog" className="block text-light/60 hover:text-primary transition-colors">
                   Blog
-                </a>
+                </Link>
                 <a
                   href={advertiserDeckUrl}
                   target="_blank"
