@@ -76,7 +76,10 @@ export default function BlogPostClientPage({ post }: BlogPostClientPageProps) {
                       <code className="bg-light/10 px-1 py-0.5 rounded text-sm text-primary align-middle">{children}</code>
                     ),
                     pre: ({ children }) => (
-                      <pre className="bg-light/10 p-4 md:p-6 rounded-lg overflow-x-auto my-6 md:my-8">{children}</pre>
+                      <pre className="bg-light/10 p-4 md:p-6 rounded-lg overflow-x-auto my-6 md:my-8
+    [&>code]:bg-transparent [&>code]:p-0">
+                        {children}
+                      </pre>
                     ),
                     a: ({ href, children }) => (
                       <a

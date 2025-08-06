@@ -41,9 +41,12 @@ Once the pool of eligible and compliant candidates is established, the core of t
 
 The formula can be expressed as:
 
-
-`Overall Score = (50% * Relevance) + (16.6% * Price) + (16.6% * Urgency) + (16.6% * Diversity)`
-
+```
+Overall Score = (50% * Relevance) 
+                + (16.6% * Price) 
+                + (16.6% * Urgency) 
+                + (16.6% * Diversity)
+```
 
 Let's break down each component.
 
