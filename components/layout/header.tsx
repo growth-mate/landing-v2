@@ -21,9 +21,9 @@ export function Header() {
             <Link href="/#solutions" className="hover:text-primary transition-colors">
               Solutions
             </Link>
-            {/* <Link href="/blog" className="hover:text-primary transition-colors">
+            <Link href="/blog" className="hover:text-primary transition-colors">
               Blog
-            </Link> */}
+            </Link>
           </nav>
           <a
             href="https://app.growthmate.xyz"
