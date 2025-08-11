@@ -11,7 +11,7 @@ body:
     attributes:
       label: Topic
       description: What is the blog post about? Brief ideas as bullet points.
-      placeholder: "- Point 1\n- Point 2\n- Point 3"
+      placeholder: "- \n- \n- "
     validations:
       required: true
 
@@ -20,6 +20,6 @@ body:
     attributes:
       label: Sources
       description: What sources will be used? List links or references.
-      placeholder: "- Source 1\n- Source 2\n- Source 3"
+      placeholder: "- \n- \n- "
     validations:
       required: false
