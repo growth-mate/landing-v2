@@ -1,5 +1,4 @@
-import { Calendar, Github, Send, Twitter, Mail } from "lucide-react"
-import Link from "next/link"
+import { Calendar, Github, Send, Twitter, Mail, Linkedin } from "lucide-react"
 
 const advertiserDeckUrl =
   "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
@@ -14,17 +13,14 @@ export function Footer() {
     <footer className="border-t border-light/10">
       <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-8">
-          <div className="h-6 md:h-10">
-            <img src="/growthmate-wordmark.svg" alt="GrowthMate" className="h-6 md:h-10" />
+          <div className="flex-shrink-0">
+            <img src="/logo.svg" alt="GrowthMate" className="h-8 w-auto" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 flex-1 md:max-w-2xl">
             <div>
               <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Resources</h4>
               <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                <Link href="/blog" className="block text-light/60 hover:text-primary transition-colors">
-                  Blog
-                </Link>
                 <a
                   href={advertiserDeckUrl}
                   target="_blank"
@@ -61,8 +57,20 @@ export function Footer() {
             </div>
 
             <div>
+              <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">About</h4>
+              <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                <a href="/blog" className="block text-light/60 hover:text-primary transition-colors">
+                  Blog
+                </a>
+                <a href="/team" className="block text-light/60 hover:text-primary transition-colors">
+                  Team
+                </a>
+              </div>
+            </div>
+
+            <div className="col-span-2 md:col-span-1">
               <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Connect</h4>
-              <div className="flex gap-3 md:gap-4">
+              <div className="flex flex-wrap gap-3 md:gap-4">
                 <a href="mailto:contact@growthmate.xyz" className="text-light/60 hover:text-primary transition-colors">
                   <Mail className="w-4 md:w-5 h-4 md:h-5" />
                 </a>
@@ -97,6 +105,14 @@ export function Footer() {
                   className="text-light/60 hover:text-primary transition-colors"
                 >
                   <Twitter className="w-4 md:w-5 h-4 md:h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/growthmate-xyz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light/60 hover:text-primary transition-colors"
+                >
+                  <Linkedin className="w-4 md:w-5 h-4 md:h-5" />
                 </a>
               </div>
             </div>

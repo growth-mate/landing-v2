@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState, useCallback } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
 interface LogoWallProps {
@@ -31,22 +31,6 @@ export function LogoWall({
   const [currentDirection, setCurrentDirection] = useState<"left" | "right">(direction)
   const [imageWidth, setImageWidth] = useState(0)
 
-  // Handle image load to calculate width based on target height
-  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget
-
-    // 1. Load the image sizes & aspect ratio
-    const naturalWidth = img.naturalWidth
-    const naturalHeight = img.naturalHeight
-    const aspectRatio = naturalWidth / naturalHeight
-    
-    // 2. Calculate the new image width given the target height
-    const calculatedWidth = height * aspectRatio
-    
-    // Set dimensions
-    setImageWidth(calculatedWidth)
-  }, [height])
-
   // Update direction when prop changes
   useEffect(() => {
     setCurrentDirection(direction)
@@ -66,7 +50,23 @@ export function LogoWall({
         handleImageLoad(syntheticEvent)
       }
     })
-  }, [src, height, handleImageLoad]) // Re-run when src or height changes
+  }, [src, height]) // Re-run when src or height changes
+
+  // Handle image load to calculate width based on target height
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+
+    // 1. Load the image sizes & aspect ratio
+    const naturalWidth = img.naturalWidth
+    const naturalHeight = img.naturalHeight
+    const aspectRatio = naturalWidth / naturalHeight
+    
+    // 2. Calculate the new image width given the target height
+    const calculatedWidth = height * aspectRatio
+    
+    // Set dimensions
+    setImageWidth(calculatedWidth)
+  }
 
   // Auto-scroll animation
   useEffect(() => {

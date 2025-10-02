@@ -32,7 +32,7 @@ export function getBlogPosts(): BlogPost[] {
           slug,
           title: data.title || "Untitled",
           date: data.date || new Date().toISOString().split("T")[0],
-          author: data.author || "GrowthMate",
+          author: data.author || "GrowthMate Team",
           excerpt: data.excerpt || "",
           content,
         }
@@ -63,7 +63,7 @@ export function getBlogPost(slug: string): BlogPost | null {
       slug,
       title: data.title || "Untitled",
       date: data.date || new Date().toISOString().split("T")[0],
-      author: data.author || "GrowthMate",
+      author: data.author || "GrowthMate Team",
       excerpt: data.excerpt || "",
       content,
     }
