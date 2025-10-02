@@ -14,17 +14,14 @@ export function Footer() {
     <footer className="border-t border-light/10">
       <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 md:gap-8">
-          <div className="h-6 md:h-10">
-            <img src="/growthmate-wordmark.svg" alt="GrowthMate" className="h-6 md:h-10" />
+          <div className="h-6 md:h-10 flex-1 basis-6">
+            <img src="/logo.svg" alt="GrowthMate" className="h-6 md:h-10" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 flex-[5]">
             <div>
               <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Resources</h4>
               <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                <Link href="/blog" className="block text-light/60 hover:text-primary transition-colors">
-                  Blog
-                </Link>
                 <a
                   href={advertiserDeckUrl}
                   target="_blank"
@@ -57,6 +54,18 @@ export function Footer() {
                 >
                   Brand Kit
                 </a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">About</h4>
+              <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                <Link href="/blog" className="block text-light/60 hover:text-primary transition-colors">
+                  Blog
+                </Link>
+                <Link href="/team" className="block text-light/60 hover:text-primary transition-colors">
+                  Team
+                </Link>
               </div>
             </div>
 

@@ -15,11 +15,11 @@ export function Header() {
         </Link>
         <div className="flex items-center gap-4 md:gap-8">
           <nav className="hidden md:flex gap-6">
-            <Link href="/#demo" className="hover:text-primary transition-colors">
-              Live Demo
+            <Link href="/" className="hover:text-primary transition-colors">
+              Home
             </Link>
-            <Link href="/#solutions" className="hover:text-primary transition-colors">
-              Solutions
+            <Link href="/team" className="hover:text-primary transition-colors">
+              Team
             </Link>
             <Link href="/blog" className="hover:text-primary transition-colors">
               Blog

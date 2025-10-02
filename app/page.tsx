@@ -98,7 +98,7 @@ export default function Home() {
         </section>
         */}
 
-        <section
+        {/* <section
           id="demo"
           className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
         >
@@ -152,7 +152,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section
           id="solutions"
