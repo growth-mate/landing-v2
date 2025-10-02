@@ -9,8 +9,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getBlogPost(slug)
 
   if (!post) {
     return createMetadata({
@@ -24,6 +25,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   })
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  return <BlogPostClientPage params={params} />
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getBlogPost(slug)
+
+  if (!post) {
+    return null // This will trigger the not-found page
+  }
+
+  return <BlogPostClientPage post={post} />
 }

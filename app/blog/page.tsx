@@ -1,4 +1,5 @@
 import { createMetadata } from "@/lib/metadata"
+import { getBlogPosts } from "@/lib/blog"
 import BlogClientPage from "./BlogClientPage"
 
 export const metadata = createMetadata({
@@ -7,5 +8,6 @@ export const metadata = createMetadata({
 })
 
 export default function BlogPage() {
-  return <BlogClientPage />
+  const posts = getBlogPosts()
+  return <BlogClientPage posts={posts} />
 }
