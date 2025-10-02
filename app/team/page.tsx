@@ -106,7 +106,7 @@ export default function TeamPage() {
                 interactions, and track the movement of users and funds.
               </p>
               <p className="text-light/80 text-sm md:text-base leading-relaxed">
-                Our previous experience in tracing user actions is essential to today's effectiveness of our
+                Our previous experience in tracing user actions is essential to today&apos;s effectiveness of our
                 recommendation engine.
               </p>
             </div>

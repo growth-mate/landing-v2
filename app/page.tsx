@@ -4,7 +4,7 @@ import { LogoWall } from "@/components/ui/logo-wall"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import Cal, { getCalApi } from "@calcom/embed-react"
-import { ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import type React from "react"
 import { useEffect } from "react"
 
