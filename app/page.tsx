@@ -1,14 +1,19 @@
 "use client"
-import { ArrowRight, ExternalLink } from "lucide-react"
-import { useEffect } from "react"
+
 import { LogoWall } from "@/components/ui/logo-wall"
-import Cal, { getCalApi } from "@calcom/embed-react"
+import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import Cal, { getCalApi } from "@calcom/embed-react"
+import { ArrowRight, ExternalLink } from "lucide-react"
+import type React from "react"
+import { useEffect } from "react"
 
 const advertiserDeckUrl =
   "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
 const publisherDeckUrl =
   "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
+
+// :D
 
 // Add Sofia Sans font
 const SofiaSansFont = () => (
@@ -21,9 +26,7 @@ const SofiaSansFont = () => (
   `}</style>
 )
 
-const WordmarkLogo = ({ className = "h-8" }: { className?: string }) => (
-  <img src="/growthmate-wordmark.svg" alt="GrowthMate" className={`h-[1.5rem] md:h-8 ${className}`} />
-)
+
 
 export default function Home() {
   useEffect(() => {
@@ -41,34 +44,7 @@ export default function Home() {
   return (
     <div className="font-sans bg-dark text-light min-h-screen">
       <SofiaSansFont />
-      <nav className="fixed w-full bg-dark/80 backdrop-blur-sm z-50">
-        <div className="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-          <a href="/">
-            <WordmarkLogo />
-          </a>
-          <div className="flex items-center gap-4 md:gap-8">
-            <nav className="hidden md:flex gap-6">
-              <a href="#solutions" className="hover:text-primary transition-colors">
-                Solutions
-              </a>
-              <a href="/team" className="hover:text-primary transition-colors">
-                Team
-              </a>
-              <a href="/blog" className="hover:text-primary transition-colors">
-                Blog
-              </a>
-            </nav>
-            <a
-              href="https://app.growthmate.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-dark px-4 md:px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors text-sm md:text-base"
-            >
-              Launch App
-            </a>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       <main className="pt-20 md:pt-24">
         <section className="container mx-auto px-4 md:px-6 py-12 md:py-20">
@@ -114,6 +90,14 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Temporarily removed sections - keeping as comments for future restoration */}
+        {/* 
+        <section id="features" className="container mx-auto px-6 py-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">Why Choose GrowthMate</h2>
+          // Features content here
+        </section>
+        */}
+
         <section
           id="demo"
           className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
@@ -135,6 +119,29 @@ export default function Home() {
                 />
                 <a
                   href="https://demo.growthmate.xyz/#/ads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-4 right-4 bg-primary text-dark p-2 rounded-lg hover:bg-primary/90 transition-colors z-10"
+                  title="Explore in new window"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 relative mx-0 md:mx-auto">
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Personalized Discovery Agent</h3>
+              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
+                Watch our AI curate personalized content feeds
+              </p>
+              <div className="bg-dark/50 rounded-2xl max-h-screen h-[700px] flex items-center justify-center relative">
+                <iframe
+                  src="https://chat.growthmate.xyz/?noFocus"
+                  className="w-full h-full rounded-2xl border-0"
+                  title="GrowthMate Discovery Agent Demo"
+                />
+                <a
+                  href="https://chat.growthmate.xyz/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute top-4 right-4 bg-primary text-dark p-2 rounded-lg hover:bg-primary/90 transition-colors z-10"
@@ -168,7 +175,7 @@ export default function Home() {
               />
               <div className="space-y-3 md:space-y-4 text-center">
                 <a
-                  href="https://app.growthmate.xyz/advertiser"
+                  href="https://app.growthmate.xyz/advertise"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
@@ -177,7 +184,7 @@ export default function Home() {
                 </a>
                 <div>
                   <a
-                    href="/advertiser-deck.pdf"
+                    href={advertiserDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
@@ -201,7 +208,7 @@ export default function Home() {
               />
               <div className="space-y-3 md:space-y-4 text-center">
                 <a
-                  href="https://app.growthmate.xyz/publisher"
+                  href="https://app.growthmate.xyz/publish"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
@@ -209,8 +216,8 @@ export default function Home() {
                   Become a Publisher <ArrowRight className="w-4 h-4" />
                 </a>
                 <div>
-                  <a
-                    href="/publisher-deck.pdf"
+                  <a    
+                    href={publisherDeckUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
@@ -222,6 +229,19 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Temporarily removed sections - keeping as comments for future restoration */}
+        {/* 
+        <section id="testimonials" className="container mx-auto px-6 py-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">What Our Clients Say</h2>
+          // Testimonials content here
+        </section>
+
+        <section id="faq" className="container mx-auto px-6 py-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">Common Questions</h2>
+          // FAQ content here
+        </section>
+        */}
 
         <section
           id="contact"

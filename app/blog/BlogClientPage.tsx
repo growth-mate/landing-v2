@@ -1,11 +1,10 @@
 "use client"
 
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { BlogPost } from "@/lib/blog"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import type { BlogPost } from "@/lib/blog"
+import Link from "next/link"
+import { ArrowRightIcon } from "lucide-react"
 
 interface BlogClientPageProps {
   posts: BlogPost[]
@@ -16,35 +15,53 @@ export default function BlogClientPage({ posts }: BlogClientPageProps) {
     <div className="font-sans bg-dark text-light min-h-screen">
       <Header />
 
-      <main className="pt-20 md:pt-24">
-        <section className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">GrowthMate Blog</h1>
-            <p className="text-lg md:text-xl text-light/80">
-              Insights on Web3 advertising, AI targeting, and the future of decentralized marketing
+      <main className="pt-24">
+        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Blog</h1>
+            <p className="text-lg md:text-xl text-light/80 mb-8 md:mb-12">
+              Latest insights on Web3 advertising, AI targeting, and blockchain marketing.
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {posts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card className="bg-light/5 border-light/10 hover:border-primary/50 transition-all duration-300 h-full">
-                  <CardContent className="p-6">
-                    <div className="mb-4">
-                      <time className="text-sm text-light/60">{post.date}</time>
+            {posts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-light/60">No blog posts found.</p>
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {posts.map((post) => (
+                  <article key={post.slug} className="bg-light/5 rounded-3xl p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div className="text-sm text-light/60 mb-2 md:mb-0">
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </div>
+                      <div className="text-sm text-light/60">By {post.author}</div>
                     </div>
-                    <h2 className="text-2xl font-bold mb-3 hover:text-primary transition-colors">{post.title}</h2>
-                    <p className="text-light/70 mb-4">{post.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-light/60">{post.author}</span>
-                      <ArrowRight className="h-5 w-5 text-primary" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+
+                    <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
+                      <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                        {post.title}
+                      </Link>
+                    </h2>
+
+                    {post.excerpt && <p className="text-light/80 mb-4 md:mb-6">{post.excerpt}</p>}
+
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-2"
+                    >
+                      Read more <ArrowRightIcon className="w-4 h-4" />
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
-        </section>
+        </div>
       </main>
 
       <Footer />
