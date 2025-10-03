@@ -43,6 +43,15 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/lennart-czardybon/",
     x: "https://x.com/lennc2ar",
   },
+  {
+    name: "Maks Vukovic",
+    role: "Advisor",
+    description: "Expert in Web3 Sales, Marketing, and general Business Strategy",
+    image:
+      "https://media.licdn.com/dms/image/v2/D4D03AQEqA2f36iIreQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730383443422?e=1762387200&v=beta&t=5kNyUTnaoSXKCoDBn7wIcVeOWyNPpu1mENc3Vxr-_dE",
+    linkedin: "https://www.linkedin.com/in/maks-vukovic/",
+    x: "https://x.com/maksvuk",
+  }
 ]
 
 export default function TeamPage() {
