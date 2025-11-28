@@ -48,8 +48,8 @@ const teamMembers = [
     role: "Advisor",
     description: "Expert in Web3 Sales, Marketing, and general Business Strategy",
     image:
-      "https://media.licdn.com/dms/image/v2/D4D03AQEqA2f36iIreQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730383443422?e=1762387200&v=beta&t=5kNyUTnaoSXKCoDBn7wIcVeOWyNPpu1mENc3Vxr-_dE",
-    linkedin: "https://www.linkedin.com/in/maks-vukovic/",
+      "https://media.licdn.com/dms/image/v2/D4D03AQEqA2f36iIreQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730383443422?e=2147483647&v=beta&t=BHH8YvUxe1kvcISqsn0rbSPGObKk3jDLXUzFcrUangc",
+      linkedin: "https://www.linkedin.com/in/maks-vukovic/",
     x: "https://x.com/maksvuk",
   }
 ]
