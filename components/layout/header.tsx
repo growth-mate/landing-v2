@@ -69,10 +69,10 @@ export function Header() {
 			</nav>
 
 			{/* Mobile — bottom */}
-			<nav className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)]">
+			<nav className="md:hidden fixed bottom-10 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-5rem)]">
 				<CardNav
 					direction="up"
-					slotOrder={["logo", "empty", "burger"]}
+					slotOrder={["empty", "logo", "burger"]}
 					cards={cards}
 					logo={logo}
 					cta={cta}

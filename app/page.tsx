@@ -126,7 +126,7 @@ export default function Home() {
 			<Header />
 
 			{/* ── Hero ── */}
-			<section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+			<section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
 				<div
 					className="absolute inset-10 md:inset-20 z-0 transition-opacity duration-[1200ms] ease-out"
 					style={{ opacity: bgReady ? 1 : 0 }}
@@ -375,7 +375,7 @@ export default function Home() {
 				id="placements"
 				className="border-t border-edge/20 py-14 md:py-20"
 			>
-				<div className="container mx-auto px-10 md:px-20">
+				<div className="container mx-auto px-10 md:px-20 overflow-hidden">
 					<div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 						<div>
 							<span className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-light/40 block mb-2">
