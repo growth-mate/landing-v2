@@ -1,70 +1,80 @@
-"use client"
+"use client";
 
-import { BlogPost } from "@/lib/blog"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import Link from "next/link"
-import { ArrowRightIcon } from "lucide-react"
+import { BlogPost } from "@/lib/blog";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 interface BlogClientPageProps {
-  posts: BlogPost[]
+	posts: BlogPost[];
 }
 
 export default function BlogClientPage({ posts }: BlogClientPageProps) {
-  return (
-    <div className="font-sans bg-dark text-light min-h-screen">
-      <Header />
+	return (
+		<div className="font-sans bg-dark text-light min-h-screen">
+			<Header />
 
-      <main className="pt-24">
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Blog</h1>
-            <p className="text-lg md:text-xl text-light/80 mb-8 md:mb-12">
-              Latest insights on Web3 advertising, AI targeting, and blockchain marketing.
-            </p>
+			<main className="pt-24 md:pt-28">
+				<div className="container mx-auto px-6 py-12 md:py-16">
+					<div className="max-w-2xl mx-auto">
+						<h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3">Blog</h1>
+						<p className="text-xs md:text-sm text-light/40 leading-relaxed mb-10 md:mb-14">
+							Insights on crypto advertising and targeting.
+						</p>
 
-            {posts.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-light/60">No blog posts found.</p>
-              </div>
-            ) : (
-              <div className="space-y-8">
-                {posts.map((post) => (
-                  <article key={post.slug} className="bg-light/5 rounded-3xl p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div className="text-sm text-light/60 mb-2 md:mb-0">
-                        {new Date(post.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </div>
-                      <div className="text-sm text-light/60">By {post.author}</div>
-                    </div>
+						{posts.length === 0 ? (
+							<div className="py-16 text-center">
+								<p className="text-xs text-light/40">No posts yet.</p>
+							</div>
+						) : (
+							<div className="divide-y divide-edge/20">
+								{posts.map((post) => (
+									<article
+										key={post.slug}
+										className="py-6 md:py-8 group"
+									>
+										<div className="flex items-baseline gap-4 mb-2">
+											<time className="text-[11px] text-light/40 tabular-nums shrink-0">
+												{new Date(post.date).toLocaleDateString("en-US", {
+													year: "numeric",
+													month: "short",
+													day: "numeric",
+												})}
+											</time>
+											<span className="text-[11px] text-light/40">{post.author}</span>
+										</div>
 
-                    <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
-                      <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
-                        {post.title}
-                      </Link>
-                    </h2>
+										<h2 className="text-base md:text-lg font-semibold mb-2 leading-snug">
+											<Link
+												href={`/blog/${post.slug}`}
+												className="group-hover:text-primary transition-colors duration-200"
+											>
+												{post.title}
+											</Link>
+										</h2>
 
-                    {post.excerpt && <p className="text-light/80 mb-4 md:mb-6">{post.excerpt}</p>}
+										{post.excerpt && (
+											<p className="text-xs md:text-sm text-light/80 leading-relaxed line-clamp-2 mb-3">
+												{post.excerpt}
+											</p>
+										)}
 
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-2"
-                    >
-                      Read more <ArrowRightIcon className="w-4 h-4" />
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </main>
+										<Link
+											href={`/blog/${post.slug}`}
+											className="inline-flex items-center gap-1 text-[11px] text-primary/40 hover:text-primary transition-colors"
+										>
+											Read <ArrowRight className="w-3 h-3" />
+										</Link>
+									</article>
+								))}
+							</div>
+						)}
+					</div>
+				</div>
+			</main>
 
-      <Footer />
-    </div>
-  )
+			<Footer />
+		</div>
+	);
 }

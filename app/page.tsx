@@ -1,298 +1,503 @@
-"use client"
+"use client";
 
-import { LogoWall } from "@/components/ui/logo-wall"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import Cal, { getCalApi } from "@calcom/embed-react"
-import { ArrowRight } from "lucide-react"
-import type React from "react"
-import { useEffect } from "react"
+import dynamic from "next/dynamic";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { getCalApi } from "@calcom/embed-react";
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { Card } from "@/components/CardSwap";
+import { useOrientation } from "@/components/ui/use-orientation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-const advertiserDeckUrl =
-  "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf"
-const publisherDeckUrl =
-  "https://docs.google.com/presentation/d/1nOwJK2pptSiqEfSMpV5wtTy_1fW4E9gNgAuTbA__u7A/export?format=pdf"
-
-// :D
-
-// Add Sofia Sans font
-const SofiaSansFont = () => (
-  <style jsx global>{`
-    @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
-    
-    * {
-      font-family: 'Sofia Sans', sans-serif;
-    }
-  `}</style>
-)
-
-
+const Silk = dynamic(() => import("@/components/Silk"), { ssr: false });
+const SplitText = dynamic(() => import("@/components/SplitText"), { ssr: false });
+const CardSwap = dynamic(() => import("@/components/CardSwap").then((m) => ({ default: m.default })), {
+	ssr: false,
+});
+interface LogoEntry {
+	name: string;
+	base: string;
+	sm?: string;
+	md?: string;
+	lg?: string;
+	span: string;
+}
+const logoGrid: LogoEntry[] = [
+	{
+		name: "Etherscan",
+		base: "/etherscan-1.png",
+		sm: "/etherscan-2.png",
+		span: "flex-[1] sm:flex-[2] basis-16 sm:basis-32",
+	},
+	{
+		name: "CoinMarketCap",
+		base: "/coinmarketcap-1.png",
+		lg: "/coinmarketcap-3.png",
+		span: "flex-[1] lg:flex-[3] basis-16 lg:basis-48",
+	},
+	{
+		name: "DexTools",
+		base: "/dextools-1.png",
+		md: "/dextools-2.png",
+		span: "flex-[1] md:flex-[2] basis-16 md:basis-32",
+	},
+	{ name: "Investing.com", base: "/investing.com-2.png", span: "flex-[2] basis-32" },
+	{ name: "Solscan", base: "/solscan-2.png", span: "flex-[2] basis-32" },
+	{
+		name: "CoinGecko",
+		base: "/coingecko-1.png",
+		md: "/coingecko-2.png",
+		span: "flex-[1] md:flex-[2] basis-16 md:basis-32",
+	},
+	{
+		name: "Watcherguru",
+		base: "/watcherguru-1.png",
+		lg: "/watcherguru-3.png",
+		span: "flex-[1] lg:flex-[3] basis-16 lg:basis-48",
+	},
+	{
+		name: "Apespace",
+		base: "/apespace-1.png",
+		md: "/apespace-2.png",
+		span: "flex-[1] md:flex-[2] basis-16 md:basis-32",
+	},
+	{
+		name: "CoinPaprika",
+		base: "/coinpaprika-1.png",
+		md: "/coinpaprika-2.png",
+		span: "flex-[1] md:flex-[2] basis-16 md:basis-32",
+	},
+];
+const useCases = [
+	{
+		who: "Onchain analytics companies",
+		how: "target blockchain analysts by identifying users that run complex queries on block explorers.",
+	},
+	{
+		who: "Cross-border payment providers",
+		how: "target foreign workers by noticing when device language differs from the language of the user's country.",
+	},
+	{
+		who: "AI companies",
+		how: "target power-users by advertising to people frequently reading articles of a competitor.",
+	},
+	{
+		who: "Exchanges",
+		how: "target high-intent traders by reaching users that recently tracked price movements of specific tokens.",
+	},
+];
 
 export default function Home() {
-  useEffect(() => {
-    ;(async () => {
-      const cal = await getCalApi({ namespace: "15min" })
-      cal("ui", {
-        theme: "dark",
-        cssVarsPerTheme: { light: { "cal-brand": "#8cb88c" }, dark: { "cal-brand": "#c2f0c2" } },
-        hideEventTypeDetails: true,
-        layout: "month_view",
-      })
-    })()
-  }, [])
+	const orientation = useOrientation();
+	const [bgReady, setBgReady] = useState(false);
+	const [headlineReady, setHeadlineReady] = useState(false);
+	const [contentReady, setContentReady] = useState(false);
+	const isMobile = useIsMobile();
 
-  return (
-    <div className="font-sans bg-dark text-light min-h-screen">
-      <SofiaSansFont />
-      <Header />
+	useEffect(() => {
+		const t1 = setTimeout(() => setBgReady(true), 50);
+		const t2 = setTimeout(() => setHeadlineReady(true), 350);
+		const t3 = setTimeout(() => setContentReady(true), 650);
+		return () => {
+			clearTimeout(t1);
+			clearTimeout(t2);
+			clearTimeout(t3);
+		};
+	}, []);
 
-      <main className="pt-20 md:pt-24">
-        <section className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-6xl font-bold mb-3 md:mb-4">AI-Powered Web3 Targeting</h1>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 text-light/80">
-              Optimize engagement with precision targeting based on on-chain activity
-            </p>
-            <a
-              href="https://app.growthmate.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-dark px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
-            >
-              Launch App <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
+	useEffect(() => {
+		(async () => {
+			const cal = await getCalApi({ namespace: "growthmate" });
+			cal("ui", {
+				theme: "dark",
+				cssVarsPerTheme: {
+					dark: { "cal-brand": "#51d959" },
+					light: { "cal-brand": "#51d959" },
+				},
+				hideEventTypeDetails: true,
+				layout: "month_view",
+			});
+		})();
+	}, []);
 
-          <div className="my-[-40px] md:my-[-60px] rounded-3xl overflow-hidden hidden md:block">
-            <img
-              src="/scene-1.gif"
-              alt="GrowthMate Demo"
-              className="w-full rounded-3xl"
-              style={{
-                clipPath: "inset(60px 0 60px 0)",
-              }}
-            />
-          </div>
-        </section>
+	return (
+		<div className="min-h-screen bg-dark text-white font-sans">
+			<Header />
 
-        <section className="py-8 md:py-12 border-y border-light/10 overflow-hidden">
-          <div className="container mx-auto px-0 md:px-6">
-            <div className="text-center mb-4 md:mb-6 px-4 md:px-0">
-              <h2 className="text-2xl md:text-3xl font-bold text-center">Our Partners</h2>
-            </div>
-            <div className="relative -my-6">
-              <LogoWall src="/partners.png" alt="GrowthMate Partners" className="h-full" height={80} speed={60} />
-              {/* Left gradient overlay */}
-              <div className="absolute top-0 left-0 w-8 md:w-16 h-full bg-gradient-to-r from-[#080908] to-transparent pointer-events-none z-10" />
-              {/* Right gradient overlay */}
-              <div className="absolute top-0 right-0 w-8 md:w-16 h-full bg-gradient-to-l from-[#080908] to-transparent pointer-events-none z-10" />
-            </div>
-          </div>
-        </section>
+			{/* ── Hero ── */}
+			<section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+				<div
+					className="absolute inset-10 md:inset-20 z-0 transition-opacity duration-[1200ms] ease-out"
+					style={{ opacity: bgReady ? 1 : 0 }}
+				>
+					<div className="relative rounded-3xl overflow-hidden h-full w-full">
+						<Silk
+							color="#5dc064"
+							speed={2}
+							scale={0.85}
+							noiseIntensity={1.5}
+							rotation={orientation === "landscape" ? -0.6 : 0.6}
+						/>
+						<div className="absolute top-10 right-10">
+							<img
+								src="/logo.svg"
+								alt=""
+								className="w-10 h-10 md:w-12 md:h-12"
+							/>
+						</div>
+					</div>
+				</div>
 
-        {/* Temporarily removed sections - keeping as comments for future restoration */}
-        {/* 
-        <section id="features" className="container mx-auto px-6 py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">Why Choose GrowthMate</h2>
-          // Features content here
-        </section>
-        */}
+				<div className="z-10 text-center px-10 md:px-20 max-w-[75%] mx-auto">
+					<div className="mb-5 md:mb-6">
+						{headlineReady && (
+							<SplitText
+								text="The ad network for crypto."
+								className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight"
+								delay={60}
+								duration={0.8}
+								ease="power3.out"
+								splitType="words"
+								from={{ opacity: 0, y: 30 }}
+								to={{ opacity: 1, y: 0 }}
+								threshold={0.1}
+								rootMargin="0px"
+								tag="h1"
+							/>
+						)}
+					</div>
 
-        {/* <section
-          id="demo"
-          className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">
-            Experience GrowthMate
-          </h2>
-          <div className="space-y-6 md:space-y-8">
-            <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 relative mx-0 md:mx-auto">
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Smart Ad Targeting</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
-                See how we optimize ad delivery in real-time
-              </p>
-              <div className="bg-dark/50 rounded-2xl min-h-[200px] md:min-h-[300px] flex items-center justify-center relative">
-                <iframe
-                  src="https://demo.growthmate.xyz/#/pure-ads"
-                  className="w-full h-full min-h-[200px] md:min-h-[300px] rounded-2xl border-0"
-                  title="GrowthMate Ad Targeting Demo"
-                />
-                <a
-                  href="https://demo.growthmate.xyz/#/ads"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-4 right-4 bg-primary text-dark p-2 rounded-lg hover:bg-primary/90 transition-colors z-10"
-                  title="Explore in new window"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+					<p
+						className="text-sm md:text-base text-white mb-10 md:mb-12 max-w-md mx-auto leading-relaxed"
+						style={{
+							opacity: contentReady ? 1 : 0,
+							filter: contentReady ? "blur(0px)" : "blur(6px)",
+							transform: contentReady ? "translateY(0)" : "translateY(10px)",
+							transition: "opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out",
+						}}
+					>
+						Programmatic banner ads across blockchain explorers, analytics platforms, and crypto
+						publications, tailored to your audience and goals.
+					</p>
 
-            <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 relative mx-0 md:mx-auto">
-              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Personalized Discovery Agent</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
-                Watch our AI curate personalized content feeds
-              </p>
-              <div className="bg-dark/50 rounded-2xl max-h-screen h-[700px] flex items-center justify-center relative">
-                <iframe
-                  src="https://chat.growthmate.xyz/?noFocus"
-                  className="w-full h-full rounded-2xl border-0"
-                  title="GrowthMate Discovery Agent Demo"
-                />
-                <a
-                  href="https://chat.growthmate.xyz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-4 right-4 bg-primary text-dark p-2 rounded-lg hover:bg-primary/90 transition-colors z-10"
-                  title="Explore in new window"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section> */}
+					<button
+						data-cal-namespace="growthmate"
+						data-cal-link="growthmate-xyz/15min"
+						className="bg-white text-dark px-7 py-2.5 rounded-xl text-sm font-semibold hover:bg-white transition-all duration-300 hover:scale-[1.02]"
+						style={{
+							opacity: contentReady ? 1 : 0,
+							filter: contentReady ? "blur(0px)" : "blur(6px)",
+							transform: contentReady ? "translateY(0)" : "translateY(10px)",
+							transition:
+								"opacity 0.8s ease-out 0.12s, filter 0.8s ease-out 0.12s, transform 0.8s ease-out 0.12s",
+						}}
+					>
+						Get in Touch
+					</button>
+				</div>
 
-        <section
-          id="solutions"
-          className="container mx-auto px-0 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center px-4 md:px-0">
-            Solutions for Your Business
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 text-left md:text-center">
-              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4">For Advertisers</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
-                Reach the right users with AI-powered targeting based on on-chain activity. Increase engagement and ROI
-                with precision ad delivery.
-              </p>
-              <img
-                src="/advertiser-preview.png"
-                alt="Advertiser Dashboard Preview"
-                className="w-full h-auto rounded-2xl md:rounded-3xl mb-4 md:mb-6 mx-auto"
-              />
-              <div className="space-y-3 md:space-y-4 text-center">
-                <a
-                  href="https://app.growthmate.xyz/advertise"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
-                >
-                  Start Advertising <ArrowRight className="w-4 h-4" />
-                </a>
-                <div>
-                  <a
-                    href={advertiserDeckUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
-                  >
-                    Learn More
-                  </a>
-                </div>
-              </div>
-            </div>
+				{/* Blur transition */}
+				<div
+					className="absolute bottom-0 left-0 right-0 h-full pointer-events-none z-10"
+					style={{
+						backdropFilter: "blur(16px)",
+						WebkitBackdropFilter: "blur(16px)",
+						maskImage: "linear-gradient(to bottom, transparent, black)",
+						WebkitMaskImage: "linear-gradient(to bottom, transparent, black)",
+					}}
+				/>
+			</section>
 
-            <div className="bg-transparent md:bg-light/5 rounded-none md:rounded-3xl p-4 md:p-8 text-left md:text-center">
-              <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4">For Publishers</h3>
-              <p className="text-light/80 mb-4 md:mb-6 text-sm md:text-base">
-                Monetize your platform with relevant, high-performing ads. Increase revenue while providing value to
-                your users.
-              </p>
-              <img
-                src="/publisher-preview.png"
-                alt="Publisher Dashboard Preview"
-                className="w-full h-auto rounded-2xl md:rounded-3xl mb-4 md:mb-6 mx-auto"
-              />
-              <div className="space-y-3 md:space-y-4 text-center">
-                <a
-                  href="https://app.growthmate.xyz/publish"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-dark px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors inline-flex items-center gap-2 text-sm md:text-base"
-                >
-                  Become a Publisher <ArrowRight className="w-4 h-4" />
-                </a>
-                <div>
-                  <a    
-                    href={publisherDeckUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors text-xs md:text-sm underline"
-                  >
-                    Learn More
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+			{/* ── Trusted By ── */}
+			{/* <section className="py-10 md:py-14">
+				<div className="container mx-auto px-10 md:px-20">
+					<p className="text-center text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-light/12 mb-8">
+						Trusted By
+					</p>
+					<div className="grid grid-cols-3 gap-4 md:gap-6 w-2/3 mx-auto">
+						{isMobile ? (
+							<>
+								<div className="rounded-xl">
+									<img
+										src="/solflare-1.png"
+										alt="Solflare"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+								<div className="rounded-xl">
+									<img
+										src="/dune-1.png"
+										alt="Dune"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+								<div className="rounded-xl">
+									<img
+										src="/ready-1.png"
+										alt="Ready"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+							</>
+						) : (
+							<>
+								<div className="rounded-xl">
+									<img
+										src="/solflare-2.png"
+										alt="Solflare"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+								<div className="rounded-xl">
+									<img
+										src="/dune-2.png"
+										alt="Dune"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+								<div className="rounded-xl">
+									<img
+										src="/ready-2.png"
+										alt="Ready"
+										className="w-full h-full object-cover"
+									/>
+								</div>
+							</>
+						)}
+					</div>
+				</div>
+			</section> */}
 
-        {/* Temporarily removed sections - keeping as comments for future restoration */}
-        {/* 
-        <section id="testimonials" className="container mx-auto px-6 py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">What Our Clients Say</h2>
-          // Testimonials content here
-        </section>
+			{/* ── What We Do ── */}
+			{/* <section className="border-t border-edge/20 py-14 md:py-20"> */}
+			<section className="py-14 md:py-20">
+				<div className="container mx-auto px-10 md:px-20">
+					<div className="max-w-2xl">
+						<h2 className="text-xl md:text-3xl font-bold tracking-tight mb-4">
+							Programmatic ads with granular targeting
+						</h2>
+						<p className="text-xs md:text-sm text-light/40 leading-relaxed">
+							We help companies reach their audiences through programmatic banner ads. Full freedom to
+							customize targeting and messaging down to a granular level, far beyond the constraints of
+							mainstream ad platforms.
+						</p>
+					</div>
+				</div>
+			</section>
 
-        <section id="faq" className="container mx-auto px-6 py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">Common Questions</h2>
-          // FAQ content here
-        </section>
-        */}
+			{/* ── Targeting Use Cases ── */}
+			<section
+				id="targeting"
+				className="border-t border-edge/20 py-14 md:py-20"
+			>
+				<div className="container mx-auto px-10 md:px-20">
+					<div className="grid md:grid-cols-5 gap-6 md:gap-12">
+						<div className="md:col-span-2">
+							<span className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-light/40 block mb-2">
+								Targeting
+							</span>
+							<h2 className="text-xl md:text-3xl font-bold tracking-tight mb-3">
+								Context-aware hyper-targeting
+							</h2>
+							<p className="text-xs md:text-sm text-light/40 leading-relaxed">
+								By analyzing behavior in real time, we figure out who to target and when. Users see
+								relevant ads at the exact moment they matter.
+							</p>
+						</div>
 
-        <section
-          id="contact"
-          className="container mx-auto px-4 md:px-6 py-12 md:py-20 border-t md:border-t-0 border-light/10"
-        >
-          <div className="bg-transparent md:bg-light/5 rounded-2xl md:rounded-3xl md:p-12 text-left md:text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Ready to Enhance Your Targeting?</h2>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 text-light/80">Schedule a personalized demo with our team</p>
-            <Cal
-              namespace="15min"
-              calLink="growthmate-xyz/15min"
-              className="w-full h-full max-h-[550px] md:max-h-none overflow-scroll rounded-2xl"
-              config={{ layout: "month_view", theme: "dark" }}
-            />
-          </div>
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center mt-8 md:mt-12">
-            <a
-              href={advertiserDeckUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-dark px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-colors inline-flex items-center gap-2"
-            >
-              Advertise with GrowthMate <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href={publisherDeckUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-light/10 text-light px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-base md:text-lg hover:bg-light/20 transition-colors inline-flex items-center gap-2"
-            >
-              Publish with GrowthMate <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </section>
-      </main>
+						<div className="md:col-span-3">
+							<div className="divide-y divide-edge/20">
+								{useCases.map((uc) => (
+									<div
+										key={uc.who}
+										className="py-4 md:py-5"
+									>
+										<span className="text-xs md:text-sm font-medium text-light/70 block mb-1">
+											{uc.who}
+										</span>
+										<span className="text-xs md:text-sm text-light/35 leading-relaxed">
+											... can {uc.how}
+										</span>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-      <Footer />
+			{/* ── Publishers ── */}
+			<section className="border-t border-edge/20 py-14 md:py-20">
+				<div className="container mx-auto px-10 md:px-20">
+					<p className="text-center text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-light/12 mb-8">
+						Publishers
+					</p>
+					<div className="flex flex-wrap gap-2 justify-center">
+						{logoGrid.map((logo) => (
+							<div
+								key={logo.name}
+								className={`${logo.span} flex items-center justify-center h-16 p-2 bg-light/5 rounded-xl flex-grow-0`}
+							>
+								<picture>
+									{logo.lg && (
+										<source
+											srcSet={logo.lg}
+											media="(min-width: 1024px)"
+										/>
+									)}
+									{logo.md && (
+										<source
+											srcSet={logo.md}
+											media="(min-width: 768px)"
+										/>
+									)}
+									{logo.sm && (
+										<source
+											srcSet={logo.sm}
+											media="(min-width: 640px)"
+										/>
+									)}
+									<img
+										src={logo.base}
+										alt={logo.name}
+										className="h-16 object-contain"
+									/>
+								</picture>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
 
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-      `}</style>
-    </div>
-  )
+			{/* ── Ad Placements ── */}
+			<section
+				id="placements"
+				className="border-t border-edge/20 py-14 md:py-20"
+			>
+				<div className="container mx-auto px-10 md:px-20">
+					<div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+						<div>
+							<span className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-light/40 block mb-2">
+								Placements
+							</span>
+							<h2 className="text-xl md:text-3xl font-bold tracking-tight mb-3">
+								Standard formats, premium inventory
+							</h2>
+							<p className="text-xs md:text-sm text-light/40 leading-relaxed">
+								Standard IAB formats running across blockchain explorers, analytics dashboards, and
+								crypto news sites.
+							</p>
+							{/* <button
+                data-cal-namespace="growthmate"
+                data-cal-link="growthmate-xyz/15min"
+                className="flex items-center gap-1 text-xs text-primary/50 hover:text-primary transition-colors"
+              >
+                Request a media kit <ArrowRight className="w-3 h-3" />
+              </button> */}
+						</div>
+
+						<div className="flex justify-center items-center">
+							<div className="relative w-[375px] h-[320px] overflow-y-clip overflow-x-visible pt-20 max-w-[calc(100vw-5rem)]">
+								<CardSwap
+									cardDistance={25}
+									verticalDistance={20}
+									delay={6000}
+									pauseOnHover={true}
+									width={320}
+									height={200}
+									easing="elastic"
+									skewAmount={4}
+								>
+									<Card customClass="rounded-xl overflow-hidden border border-edge/30 shadow-2xl shadow-black/40">
+										<img
+											src="/placement-1.png"
+											alt="Ad placement example — crypto news"
+											className="w-full h-full object-cover object-top"
+										/>
+									</Card>
+									<Card customClass="rounded-xl overflow-hidden border border-edge/30 shadow-2xl shadow-black/40">
+										<img
+											src="/placement-2.png"
+											alt="Ad placement example — financial platform"
+											className="w-full h-full object-cover object-top"
+										/>
+									</Card>
+									<Card customClass="rounded-xl overflow-hidden border border-edge/30 shadow-2xl shadow-black/40">
+										<img
+											src="/placement-3.png"
+											alt="Ad placement example — blockchain explorer"
+											className="w-full h-full object-cover object-top"
+										/>
+									</Card>
+								</CardSwap>
+								<div
+									className="absolute bottom-0 left-0 right-0 h-full pointer-events-none z-10"
+									style={{ background: "linear-gradient(180deg, #0a0d0600 90%, #0a0d06)" }}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* ── Contact ── */}
+			<section
+				id="contact"
+				className="relative flex items-center justify-center overflow-hidden border-t border-edge/20 py-20 md:py-28"
+			>
+				<div className="absolute container inset-10 md:inset-20 z-0 !p-0 !w-auto">
+					<div className="relative rounded-3xl overflow-hidden h-full w-full">
+						<Silk
+							color="#5dc064"
+							speed={2}
+							scale={0.5}
+							noiseIntensity={1.5}
+							rotation={-0.6}
+						/>
+					</div>
+				</div>
+
+				<div className="container z-10 mx-auto px-10 md:px-20 text-center max-w-lg">
+					<h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-4">
+						Want to see how this works for your project?
+					</h2>
+					<p className="text-xs md:text-sm text-white leading-relaxed mb-10">
+						We&apos;ll walk you through a sample targeting plan for your audience. We genuinely enjoy
+						exploring new advertising use cases.
+					</p>
+
+					<button
+						data-cal-namespace="growthmate"
+						data-cal-link="growthmate-xyz/15min"
+						className="inline-flex items-center gap-2 bg-white text-dark px-7 py-2.5 rounded-xl text-sm font-semibold hover:bg-white transition-all duration-300 hover:scale-[1.02]"
+					>
+						Book a Call <ArrowRight className="w-4 h-4" />
+					</button>
+
+					<div className="mt-5">
+						<a
+							href="mailto:contact@growthmate.xyz"
+							className="text-[11px] bold text-white/80 hover:text-white transition-colors"
+						>
+							or email contact@growthmate.xyz
+						</a>
+					</div>
+				</div>
+
+				{/* Blur transition */}
+				<div
+					className="absolute bottom-0 left-0 right-0 h-full pointer-events-none z-10"
+					style={{
+						backdropFilter: "blur(16px)",
+						WebkitBackdropFilter: "blur(16px)",
+						maskImage: "radial-gradient(circle, transparent, black 100%)",
+						WebkitMaskImage: "radial-gradient(circle, transparent, black)",
+					}}
+				/>
+			</section>
+
+			<Footer />
+		</div>
+	);
 }

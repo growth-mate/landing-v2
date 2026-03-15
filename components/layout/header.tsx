@@ -1,40 +1,83 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
+import { CardNav, CardNavCard } from "@/components/CardNav";
 
-const WordmarkLogo = ({ className = "h-8" }: { className?: string }) => (
-  <img src="/growthmate-wordmark.svg" alt="GrowthMate" className={`h-[1.5rem] md:h-8 ${className}`} />
-)
+const cards: CardNavCard[] = [
+	{
+		title: "Product",
+		links: [
+			{ label: "Ad Placements", href: "/#placements" },
+			{ label: "Targeting", href: "/#targeting" },
+		],
+	},
+	{
+		title: "Resources",
+		links: [
+			{ label: "Blog", href: "/blog" },
+			{
+				label: "Advertiser Deck",
+				href: "https://docs.google.com/presentation/d/1uffmrZWWRdeA8EpOOxnHuGBlkHPDceOj2coEk4RF3U8/export?format=pdf",
+				external: true,
+			},
+		],
+	},
+	{
+		title: "Company",
+		links: [
+			{ label: "Team", href: "/team" },
+			{ label: "Contact", href: "mailto:contact@growthmate.xyz", external: true },
+		],
+	},
+];
+
+const logo = (
+	<Link
+		href="/"
+		className="flex items-center gap-1.5"
+	>
+		<img
+			src="/growthmate-wordmark.svg"
+			alt=""
+			className="h-4"
+		/>
+	</Link>
+);
+
+const cta = (
+	<a
+		data-cal-namespace="growthmate"
+		data-cal-link="growthmate-xyz/15min"
+		className="bg-primary text-dark px-4 py-1.5 rounded-xl text-xs font-semibold hover:bg-primary/85 transition-colors duration-200 cursor-pointer"
+	>
+		Get in Touch
+	</a>
+);
 
 export function Header() {
-  return (
-    <nav className="fixed w-full bg-dark/80 backdrop-blur-sm z-50">
-      <div className="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-        <Link href="/">
-          <WordmarkLogo />
-        </Link>
-        <div className="flex items-center gap-4 md:gap-8">
-          <nav className="hidden md:flex gap-6">
-            <Link href="/" className="hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link href="/team" className="hover:text-primary transition-colors">
-              Team
-            </Link>
-            <Link href="/blog" className="hover:text-primary transition-colors">
-              Blog
-            </Link>
-          </nav>
-          <a
-            href="https://app.growthmate.xyz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary text-dark px-4 md:px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors text-sm md:text-base"
-          >
-            Launch App
-          </a>
-        </div>
-      </div>
-    </nav>
-  )
+	return (
+		<>
+			{/* Desktop — top */}
+			<nav className="hidden md:block fixed top-4 left-1/2 -translate-x-1/2 z-50 min-w-[420px]">
+				<CardNav
+					direction="down"
+					slotOrder={["burger", "logo", "cta"]}
+					cards={cards}
+					logo={logo}
+					cta={cta}
+				/>
+			</nav>
+
+			{/* Mobile — bottom */}
+			<nav className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)]">
+				<CardNav
+					direction="up"
+					slotOrder={["logo", "empty", "burger"]}
+					cards={cards}
+					logo={logo}
+					cta={cta}
+				/>
+			</nav>
+		</>
+	);
 }
