@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/CardSwap";
 import { useOrientation } from "@/components/ui/use-orientation";
-import { useIsMobile } from "@/hooks/use-mobile";
+// import { useIsMobile } from "@/hooks/use-mobile";
 
 const Silk = dynamic(() => import("@/components/Silk"), { ssr: false });
 const SplitText = dynamic(() => import("@/components/SplitText"), { ssr: false });
@@ -93,7 +93,7 @@ export default function Home() {
 	const [bgReady, setBgReady] = useState(false);
 	const [headlineReady, setHeadlineReady] = useState(false);
 	const [contentReady, setContentReady] = useState(false);
-	const isMobile = useIsMobile();
+	// const isMobile = useIsMobile();
 
 	useEffect(() => {
 		const t1 = setTimeout(() => setBgReady(true), 50);
