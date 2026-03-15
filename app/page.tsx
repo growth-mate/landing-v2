@@ -128,7 +128,7 @@ export default function Home() {
 			{/* ── Hero ── */}
 			<section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
 				<div
-					className="absolute inset-10 md:inset-20 z-0 transition-opacity duration-[1200ms] ease-out"
+					className="absolute inset-10 lg:inset-20 z-0 transition-opacity duration-[1200ms] ease-out"
 					style={{ opacity: bgReady ? 1 : 0 }}
 				>
 					<div className="relative rounded-3xl overflow-hidden h-full w-full">
