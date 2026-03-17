@@ -4,7 +4,7 @@ import { Linkedin } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Team — GrowthMate",
+	title: "GrowthMate Team",
 	description: "Meet the team behind GrowthMate.",
 };
 
@@ -116,26 +116,33 @@ export default function TeamPage() {
 
 					<div className="max-w-3xl mx-auto border-t border-edge/20 py-12 md:py-16">
 						<div className="container mx-auto px-10 md:px-20">
-							<div className="grid grid-cols-3 gap-4 md:gap-6 w-2/3 mx-auto">
+							<div className="flex gap-4 md:gap-6 w-2/3 mx-auto">
 								<div className="rounded-xl">
 									<img
 										src="/rwth.png"
 										alt="RWTH Aachen University"
-										className="w-full h-full object-cover"
+										className="w-full h-full object-contain"
 									/>
 								</div>
 								<div className="rounded-xl">
 									<img
 										src="/bocconi.png"
 										alt="Bocconi University"
-										className="w-full h-full object-cover"
+										className="w-full h-full object-contain"
 									/>
 								</div>
 								<div className="rounded-xl">
 									<img
 										src="/ethz.png"
 										alt="ETH Zurich University"
-										className="w-full h-full object-cover"
+										className="w-full h-full object-contain"
+									/>
+								</div>
+								<div className="rounded-xl">
+									<img
+										src="/razor.png"
+										alt="Razor Group"
+										className="w-full h-full object-contain"
 									/>
 								</div>
 							</div>
